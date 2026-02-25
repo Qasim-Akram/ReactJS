@@ -1,0 +1,11 @@
+
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+     <h1>Just checking the vite react project for the first time </h1>
+  )
+}
+
+export default App
