@@ -6,12 +6,14 @@
         <title>Custom React</title>
         <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     </head>
     <body>
         <div id="root" ></div>
-        <script>
+        <script  type="text/babel">
+            const button = <button>Check this </button>
             const container = document.getElementById('root');
-            ReactDOM.createRoot(container).render("Welcome to react basic")
+            ReactDOM.createRoot(container).render(button)
         </script>
     </body>
 </html>
