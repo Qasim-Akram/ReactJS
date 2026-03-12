@@ -11,9 +11,12 @@
     <body>
         <div id="root" ></div>
         <script  type="text/babel">
-            const button = <button>Check this </button>
+            const div = <div>
+            <button>Check this </button>
+            <p>yep this is just the testing of new element </p></div>
             const container = document.getElementById('root');
-            ReactDOM.createRoot(container).render(button)
+            ReactDOM.createRoot(container).render(div)
+            
         </script>
     </body>
 </html>
