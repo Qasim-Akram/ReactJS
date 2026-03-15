@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Practicing1</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="js-container"></div>
+    <script type="text/babel">
+        function LoginFoam() {
+            return (
+                <>
+                    <p>Welcome to my website </p>
+                    <div>
+                        <input type="text" placeholder="Enter email" />
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Enter password" />
+                    </div>
+                    <button>Signup</button>
+                    <button>Login</button>
+                </>
+            );
+        }
+
+        function App() {
+            return (
+                <LoginFoam />
+            );
+        }
+
+        const container = document.querySelector(".js-container")
+        ReactDOM.createRoot(container).render(<App />)
+
+    </script>
+</body>
+
+</html>
