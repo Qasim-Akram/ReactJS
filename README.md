@@ -55,7 +55,7 @@ This repo is updated **daily** as I learn and practice React. Each folder repres
 
 ## 👨‍💻 About Me
 
-**Muhammad Qasim** — CS student & full stack developer in training.
+**Muhammad Qasim** — CS student & full stack developer in training
 
 - 🌐 Portfolio: [mqasimakram.netlify.app](https://mqasimakram.netlify.app)
 - 💻 GitHub: [github.com/Qasim-Akram](https://github.com/Qasim-Akram)
