@@ -28,19 +28,7 @@
         }
 
         function ChatMessage({ message, sender }) {
-            // const message = props.message
-            //const sender = props.sender
-            //const {message ,sender} = props
-
-            /*  if (sender === "robot")
-                  return (
-                      <div>
-                          <img src="images/Chatbot.png" width="30" />
-                          {message}
-                      </div>
-  
-                  );
-               */
+           
             return (
                 <div>
                     {sender === "robot" && (
@@ -48,7 +36,7 @@
                         />
                     )}
 
-                    
+
                     {message}
                     {sender === "user" && (
                         <img src="images/User.png" width="30"
@@ -58,45 +46,53 @@
             );
         }
 
-
-        function App() {
+        function ChatMessages() {
             const chatMessages = [
                 {
                     message: "Hello Chatbot",
                     sender: "user",
-                    id:"0"
+                    id: "0"
                 },
                 {
                     message: "Hello! How can i help you",
                     sender: "robot",
-                    id:"1"
+                    id: "1"
                 },
                 {
                     message: "can you get me todays date?",
                     sender: "user",
-                    id:"2"
+                    id: "2"
                 },
                 {
                     message: "Today is September 27",
                     sender: "robot",
-                    id:"3"
+                    id: "3"
                 }]
-
-
 
             return (
                 <>
-                    <ChatInput />
                     {chatMessages.map((chatMessages) => {
                         return (
                             <ChatMessage
                                 message={chatMessages.message}
                                 sender={chatMessages.sender}
-                                key = {chatMessages.id}
+                                key={chatMessages.id}
                             />
                         )
                     })
                     }
+                </>
+            )
+
+        }
+
+
+        function App() {
+
+            return (
+                <>
+                    <ChatInput />
+                    <ChatMessages />
 
                 </>
             )
