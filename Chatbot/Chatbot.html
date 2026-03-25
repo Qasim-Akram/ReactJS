@@ -47,6 +47,8 @@
                         <img src="images/Chatbot.png" width="30"
                         />
                     )}
+
+                    
                     {message}
                     {sender === "user" && (
                         <img src="images/User.png" width="30"
@@ -61,19 +63,23 @@
             const chatMessages = [
                 {
                     message: "Hello Chatbot",
-                    sender: "user"
+                    sender: "user",
+                    id:"0"
                 },
                 {
                     message: "Hello! How can i help you",
-                    sender: "robot"
+                    sender: "robot",
+                    id:"1"
                 },
                 {
                     message: "can you get me todays date?",
-                    sender: "user"
+                    sender: "user",
+                    id:"2"
                 },
                 {
                     message: "Today is September 27",
-                    sender: "robot"
+                    sender: "robot",
+                    id:"3"
                 }]
 
 
@@ -86,6 +92,7 @@
                             <ChatMessage
                                 message={chatMessages.message}
                                 sender={chatMessages.sender}
+                                key = {chatMessages.id}
                             />
                         )
                     })
