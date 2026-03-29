@@ -15,19 +15,35 @@
     <div class="js-container"></div>
     <script type="text/babel">
 
+<<<<<<< HEAD
 
 
         function ChatInput({ chatMessages, setChatMessages }) {
 
             const [saveInput, setInputText] = React.useState('')
 
+=======
+
+
+        function ChatInput() {
+
+            const [ saveInput, setInputText ] = React.useState('')
+
+>>>>>>> 534d878f43c83b89505b4c721b0634dbd83b6ef5
             function saveInputText(event) {
                 setInputText = event.target.value
             }
 
+<<<<<<< HEAD
             function sendMessage() {
                 console.log(saveInput)
                 setChatMessages([...chatMessages,
+=======
+
+            function sendMessage() {
+              console.log(saveInput)
+               setChatMessages([...chatMessages,
+>>>>>>> 534d878f43c83b89505b4c721b0634dbd83b6ef5
                 {
                     message: "this is test ?",
                     sender: "user",
@@ -42,7 +58,11 @@
                         size="30"
                         onChange={saveInputText}
                     />
+<<<<<<< HEAD
                     <button onClick={sendMessage}>Send</button>
+=======
+                    <button onClick = {sendMessage}>Send</button>
+>>>>>>> 534d878f43c83b89505b4c721b0634dbd83b6ef5
                 </>
             );
         }
@@ -66,6 +86,7 @@
             );
         }
 
+<<<<<<< HEAD
         function ChatMessages({ chatMessages }) {
 
             return (
@@ -87,6 +108,9 @@
 
 
         function App() {
+=======
+        function ChatMessages() {
+>>>>>>> 534d878f43c83b89505b4c721b0634dbd83b6ef5
             const [chatMessages, setChatMessages] = React.useState([
                 {
                     message: "Hello Chatbot",
@@ -111,6 +135,7 @@
 
             return (
                 <>
+<<<<<<< HEAD
                     <ChatInput
                         chatMessages={chatMessages}
                         setChatMessages={setChatMessages}
@@ -119,6 +144,30 @@
                     <ChatMessages
                         chatMessages={chatMessages}
                     />
+=======
+                    {chatMessages.map((chatMessages) => {
+                        return (
+                            <ChatMessage
+                                message={chatMessages.message}
+                                sender={chatMessages.sender}
+                                key={chatMessages.id}
+                            />
+                        )
+                    })
+                    }
+                </>
+            )
+
+        }
+
+
+        function App() {
+
+            return (
+                <>
+                    <ChatInput />
+                    <ChatMessages />
+>>>>>>> 534d878f43c83b89505b4c721b0634dbd83b6ef5
 
                 </>
             )
