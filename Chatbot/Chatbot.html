@@ -22,25 +22,28 @@
             const [saveInput, setInputText] = React.useState('')
 
             function saveInputText(event) {
-                setInputText = event.target.value
+                setInputText(event.target.value)
             }
 
             function sendMessage() {
                 console.log(saveInput)
                 setChatMessages([...chatMessages,
                 {
-                    message: "this is test ?",
+                    message: saveInput,
                     sender: "user",
                     id: crypto.randomUUID()
                 }])
+                
+                setInputText('')
             }
-
+ 
             return (
                 <>
                     <input
                         placeholder="Send a message to Chatbot"
                         size="30"
                         onChange={saveInputText}
+                        value={saveInput}
                     />
                     <button onClick={sendMessage}>Send</button>
                 </>
