@@ -15,31 +15,41 @@
     <div class="js-container"></div>
     <script type="text/babel">
 
-        
+
 
         function ChatInput() {
-            const {saveInput,setInputText} = React.useState('')
 
-            function saveInputText(event){
-            setInputText = event.target.value
-            
+            const [ saveInput, setInputText ] = React.useState('')
 
-        } 
+            function saveInputText(event) {
+                setInputText = event.target.value
+            }
+
+
+            function sendMessage() {
+              console.log(saveInput)
+               setChatMessages([...chatMessages,
+                {
+                    message: "this is test ?",
+                    sender: "user",
+                    id: crypto.randomUUID()
+                }])
+            }
 
             return (
                 <>
                     <input
                         placeholder="Send a message to Chatbot"
                         size="30"
-                        onChange = {saveInputText}
+                        onChange={saveInputText}
                     />
-                    <button>Send</button>
+                    <button onClick = {sendMessage}>Send</button>
                 </>
             );
         }
 
         function ChatMessage({ message, sender }) {
-           
+
             return (
                 <div>
                     {sender === "robot" && (
@@ -58,7 +68,7 @@
         }
 
         function ChatMessages() {
-            const [chatMessages, setChatMessages] = React.useState( [
+            const [chatMessages, setChatMessages] = React.useState([
                 {
                     message: "Hello Chatbot",
                     sender: "user",
@@ -78,22 +88,10 @@
                     message: "Today is September 27",
                     sender: "robot",
                     id: "3"
-                }] )
-
-                function sendMessage(){
-                    setChatMessages([...chatMessages,
-                    {   
-                        message: "this is test ?",
-                        sender: "user",
-                        id: crypto.randomUUID()
-                    }])
-                   
-                }
+                }])
 
             return (
                 <>
-                   <button onClick={sendMessage}>Send Message</button>
-
                     {chatMessages.map((chatMessages) => {
                         return (
                             <ChatMessage
