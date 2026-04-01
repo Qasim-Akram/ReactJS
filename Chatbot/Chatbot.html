@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Bot</title>
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/supersimpledev/Chatbot.js"> </script>
+
 </head>
 
 <body>
@@ -18,7 +21,6 @@
 
 
         function ChatInput({ chatMessages, setChatMessages }) {
-
             const [saveInput, setInputText] = React.useState('')
 
             function saveInputText(event) {
@@ -26,17 +28,26 @@
             }
 
             function sendMessage() {
-                console.log(saveInput)
-                setChatMessages([...chatMessages,
+                const newChatMessage = [...chatMessages,
                 {
                     message: saveInput,
                     sender: "user",
                     id: crypto.randomUUID()
-                }])
-                
+                }]
+                setChatMessages(newChatMessage);
+
+                const response = Chatbot.getResponse(saveInput)
+                setChatMessages([...newChatMessage,
+                {
+                    message: response,
+                    sender: "robot",
+                    id: crypto.randomUUID()
+                }]);
+
+
                 setInputText('')
             }
- 
+
             return (
                 <>
                     <input
@@ -132,4 +143,5 @@
 
     </script>
 </body>
+
 </html>
