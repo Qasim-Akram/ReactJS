@@ -22,13 +22,16 @@
 
         function ChatInput({ chatMessages, setChatMessages }) {
             const [saveInput, setInputText] = React.useState('')
+            const [isLoading, setIsLoading] = React.useState(false)
 
             function saveInputText(event) {
                 setInputText(event.target.value)
             }
 
-            function sendMessage() {
-              
+            async function sendMessage() {
+                if (!saveInput.trim() || isLoading) return;
+
+                setIsLoading(true)
 
                 const newChatMessage = [...chatMessages,
                 {
@@ -38,7 +41,7 @@
                 }]
                 setChatMessages(newChatMessage);
 
-                const response = Chatbot.getResponse(saveInput)
+                const response = await Chatbot.getResponseAsync(saveInput)
                 setChatMessages([...newChatMessage,
                 {
                     message: response,
@@ -46,8 +49,8 @@
                     id: crypto.randomUUID()
                 }]);
 
-
                 setInputText('')
+                setIsLoading(false)
             }
 
             return (
@@ -57,6 +60,7 @@
                         size="30"
                         onChange={saveInputText}
                         value={saveInput}
+                        disabled={isLoading}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
                                 sendMessage();
@@ -66,7 +70,7 @@
                             }
                         }}
                     />
-                    <button onClick={sendMessage}>Send</button>
+                    <button onClick={sendMessage} disabled={isLoading}>{isLoading ? "Loading..." : "Send"}</button>
                 </>
             );
         }
