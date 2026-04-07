@@ -40,7 +40,7 @@
 
         .chat-input-container {
             display: flex;
-            margin-bottom:60px;
+            margin-bottom: 60px;
 
 
         }
@@ -80,11 +80,12 @@
         .chat-message-profile {
             width: 60px;
         }
+
         .chat-message-container {
             flex-grow: 1;
-            overflow:scroll;
-            scrollbar-width:none;
-            
+            overflow: scroll;
+            scrollbar-width: none;
+
         }
     </style>
 
@@ -184,8 +185,19 @@
 
         function ChatMessages({ chatMessages }) {
 
+            const chatMessagesRef = React.useRef(null);
+
+            React.useEffect(() => {
+                const containerElem = chatMessagesRef.current
+                if (containerElem) {
+                    containerElem.scrollTop = containerElem.scrollHeight;
+                }
+            }, [chatMessages]);
+
             return (
-                <div className="chat-message-container">
+                <div className="chat-message-container"
+                    ref={chatMessagesRef}>
+
                     {chatMessages.map((chatMessages) => {
                         return (
                             <ChatMessage
