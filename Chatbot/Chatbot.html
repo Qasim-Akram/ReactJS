@@ -13,23 +13,60 @@
     <script src="https://unpkg.com/supersimpledev/Chatbot.js"> </script>
 
     <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
         .send-button {
-            background-color: rgb(25,135,84);
-            color:white;
+            background-color: rgb(25, 135, 84);
+            color: white;
             padding: 12px 20px;
-            margin-left:10px;
-            border:none;
+            margin-left: 10px;
+            border: none;
             border-radius: 10px;
             font-size: 15px;
             cursor: pointer;
         }
-        .chat-input{
+
+        .chat-input {
             padding: 12px 20px;
             border-radius: 10px;
             border-width: 1px;
             font-size: 15px;
+            flex-grow: 1;
         }
-        
+
+        .chat-input-container {
+            display: flex;
+
+
+        }
+
+        .app-container {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .chat-message-user {
+            display: flex;
+            justify-content: end;
+            align-items: start;
+        }
+        .chat-message-robot {
+            display: flex;
+            align-items: start;
+      
+        }
+        .chat-message-text {
+            background-color: rgb(238,238,238);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-right: 10px;
+            margin-left: 10px; 
+            margin-bottom: 20px;
+            max-width: 300px;
+            
+        }
     </style>
 
 </head>
@@ -74,7 +111,7 @@
             }
 
             return (
-                <>
+                <div className="chat-input-container">
                     <input
                         placeholder="Send a message to Chatbot"
                         size="30"
@@ -91,29 +128,35 @@
                             }
                         }}
                     />
-                    <button 
-                    onClick={sendMessage} 
-                    disabled={isLoading}
-                    className="send-button">
-                    {isLoading ? "Loading..." : "Send"}
+                    <button
+                        onClick={sendMessage}
+                        disabled={isLoading}
+                        className="send-button">
+                        {isLoading ? "Loading..." : "Send"}
                     </button>
-                </>
+                </div>
             );
         }
 
         function ChatMessage({ message, sender }) {
 
             return (
-                <div>
+                <div className={sender === "user" ?
+                    'chat-message-user' : 'chat-message-robot'}>
+
                     {sender === "robot" && (
-                        <img src="images/Chatbot.png" width="30"
+                        <img src="images/Chatbot.png"
+                         className="chat-message-profile"
                         />
                     )}
 
+                    <div class="chat-message-text">
+                        {message}
+                    </div>
 
-                    {message}
                     {sender === "user" && (
-                        <img src="images/User.png" width="30"
+                        <img src="images/User.png" 
+                        className="chat-message-profile"
                         />
                     )}
                 </div>
@@ -164,7 +207,7 @@
                 }])
 
             return (
-                <>
+                <div className="app-container">
                     <ChatInput
                         chatMessages={chatMessages}
                         setChatMessages={setChatMessages}
@@ -174,7 +217,7 @@
                         chatMessages={chatMessages}
                     />
 
-                </>
+                </div>
             )
         }
 
