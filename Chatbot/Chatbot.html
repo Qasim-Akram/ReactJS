@@ -12,6 +12,13 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/supersimpledev/Chatbot.js"> </script>
 
+    <style>
+        .send-button {
+            background-color: green;
+        }
+        
+    </style>
+
 </head>
 
 <body>
@@ -70,7 +77,12 @@
                             }
                         }}
                     />
-                    <button onClick={sendMessage} disabled={isLoading}>{isLoading ? "Loading..." : "Send"}</button>
+                    <button 
+                    onClick={sendMessage} 
+                    disabled={isLoading}
+                    className="send-button">
+                    {isLoading ? "Loading..." : "Send"}
+                    </button>
                 </>
             );
         }
@@ -93,7 +105,7 @@
                 </div>
             );
         }
-        
+
         function ChatMessages({ chatMessages }) {
 
             return (
