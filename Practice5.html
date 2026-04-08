@@ -10,12 +10,43 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+   
+   <style>
+        .switch{
+            background-color: red;
+            border: none;
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+        }
+    </style>
 
 </head>
+
 <body>
     <div id="root"></div>
     <script type="text/babel">
+
+        function App() {
+        const [isButtonON,setButton] = React.useState(true)
+
+            function modify(){
+               setButton(!isButtonON)
+            }   
         
+             return <>
+                <button 
+                className="switch"
+                style={{backgroundColor: isButtonON ? "red" : "green"}}
+                onClick = {modify}>
+                    {isButtonON ? "ON" : "OFF"}
+                </button>
+              </>
+        }
+
+        const container = document.querySelector("#root")
+        const root = ReactDOM.createRoot(container)
+        root.render(<App />)
     </script>
 </body>
 
