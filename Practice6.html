@@ -15,15 +15,41 @@
     <div id="root"></div>
     <script type="text/babel">
 
-     function App(){
-        
-        return({})
-     }
-     
+        function App() {
+            const [count, countClicked] = React.useState(0);
+            const autoClick = React.useRef(null)
 
-     const container = document.querySelector("#root")
-     const root = ReactDOM.createRoot("container")
-     root.render(<App />)
+            function Increment() {
+                countClicked(prev => prev + 1)
+            }
+
+            
+     
+            return (
+                <>
+                    <button
+                        onClick={Increment}>
+                        Clicked {count} Times
+                    </button>
+
+                    <button
+                        onClick={() => countClicked(0)}>
+                        Reset
+                    </button>
+
+                    <button
+                        ref={autoClick}>
+                        Auto Click
+                    </button>
+
+                </>
+            )
+        }
+
+
+        const container = document.querySelector("#root")
+        const root = ReactDOM.createRoot(container)
+        root.render(<App />)
     </script>
 </body>
 
