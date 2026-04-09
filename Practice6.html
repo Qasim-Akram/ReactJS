@@ -16,13 +16,28 @@
     <script type="text/babel">
 
         function App() {
-            const [count, countClicked] = React.useState(0);
-            const autoClick = React.useRef(null)
+            const [count, setCount] = React.useState(0);
+            const autoClickRef = React.useRef(null);
 
             function Increment() {
-                countClicked(prev => prev + 1)
+                setCount(prev => prev + 1)
             }
 
+            function autoClick(){
+                if(autoClickRef.current) return;
+                autoClickRef.current = setInterval(() => {
+                     setCount(prev => prev + 1)   
+                }, 1000);
+            }
+            
+            function resetCount(){
+                setCount(0)
+                if(autoClickRef.current){
+                clearInterval(autoClickRef.current)
+                 autoClickRef.current = null;
+                    }
+
+            }
             
      
             return (
@@ -33,12 +48,12 @@
                     </button>
 
                     <button
-                        onClick={() => countClicked(0)}>
+                        onClick={resetCount}>
                         Reset
                     </button>
 
                     <button
-                        ref={autoClick}>
+                        onClick = {autoClick}>
                         Auto Click
                     </button>
 
