@@ -10,6 +10,114 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #root {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .password-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .password-container input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .password-container button {
+            flex: 0 0 70px;
+            background-color: #667eea !important;
+            color: white;
+            margin-bottom: 0;
+        }
+
+        .password-container button:hover {
+            background-color: #5568d3 !important;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:first-of-type {
+            background-color: #999;
+            color: white;
+        }
+
+        button:first-of-type:hover {
+            background-color: #777;
+        }
+
+        button:nth-of-type(2) {
+            background-color: #667eea;
+            color: white;
+        }
+
+        button:nth-of-type(2):hover {
+            background-color: #5568d3;
+        }
+
+        button:nth-of-type(3) {
+            background-color: #764ba2;
+            color: white;
+        }
+
+        button:nth-of-type(3):hover {
+            background-color: #63408a;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,14 +139,15 @@
                         placeholder="Enter your Email"
                     />
 
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                    />
-
-                    <button onClick={togglePassword}>
-                        {showPassword ? "Hide" : "Show"}
-                    </button>
+                    <div className="password-container">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                        />
+                        <button onClick={togglePassword}>
+                            {showPassword ? "Hide" : "Show"}
+                        </button>
+                    </div>
 
                     <button>Login</button>
                     <button>Signup</button>
