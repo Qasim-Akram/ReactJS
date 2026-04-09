@@ -128,7 +128,7 @@
             const [showPassword, setShowPassword] = React.useState(false);
 
             function togglePassword() {
-              setShowPassword(!showPassword)
+                setShowPassword(prev => !prev)
             }
 
             return (
@@ -137,6 +137,7 @@
                     <input
                         type="email"
                         placeholder="Enter your Email"
+                        autoComplete="email"
                     />
 
                     <div className="password-container">
@@ -144,7 +145,9 @@
                             type={showPassword ? "text" : "password"}
                             placeholder="Password"
                         />
-                        <button onClick={togglePassword}>
+                        <button
+                            type="button"
+                            onClick={togglePassword}>
                             {showPassword ? "Hide" : "Show"}
                         </button>
                     </div>
