@@ -17,6 +17,12 @@
     <script type="text/babel">
 
         function Login_Signup() {
+            const [showPassword, setShowPassword] = React.useState(false);
+
+            function togglePassword() {
+              setShowPassword(!showPassword)
+            }
+
             return (
                 <>
                     <h1>Hello!Welcome to my website</h1>
@@ -25,10 +31,15 @@
                         placeholder="Enter your Email"
                     />
 
-                    <input 
-                        type="password"
+                    <input
+                        type={showPassword ? "text" : "password"}
                         placeholder="Password"
                     />
+
+                    <button onClick={togglePassword}>
+                        {showPassword ? "Hide" : "Show"}
+                    </button>
+
                     <button>Login</button>
                     <button>Signup</button>
                 </>
