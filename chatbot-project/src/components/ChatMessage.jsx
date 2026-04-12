@@ -1,5 +1,6 @@
 import robortprofileimage from '../assets/Chatbot.png';
 import userprofileimage from '../assets/User.png';
+import './ChatMessage.css';
 
 export function ChatMessage({ message, sender }) {
 
