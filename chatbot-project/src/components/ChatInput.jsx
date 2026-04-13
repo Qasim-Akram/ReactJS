@@ -1,64 +1,74 @@
 import { useState } from 'react'
-import {Chatbot} from 'supersimpledev'
+import { Chatbot } from 'supersimpledev'
 import './ChatInput.css'
- 
-export  function ChatInput({ chatMessages, setChatMessages }) {
-            const [saveInput, setInputText] = useState('')
-            const [isLoading, setIsLoading] = useState(false)
 
-            function saveInputText(event) {
-                setInputText(event.target.value)
-            }
+export function ChatInput({ chatMessages, setChatMessages }) {
+    const [saveInput, setInputText] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
-            async function sendMessage() {
-                if (!saveInput.trim() || isLoading) return;
+    function saveInputText(event) {
+        setInputText(event.target.value)
+    }
 
-                setIsLoading(true)
+    async function sendMessage() {
+        if (!saveInput.trim() || isLoading) return;
 
-                const newChatMessage = [...chatMessages,
-                {
-                    message: saveInput,
-                    sender: "user",
-                    id: crypto.randomUUID()
-                }]
-                setChatMessages(newChatMessage);
+        setIsLoading(true)
 
-                const response = await Chatbot.getResponseAsync(saveInput)
-                setChatMessages([...newChatMessage,
-                {
-                    message: response,
-                    sender: "robot",
-                    id: crypto.randomUUID()
-                }]);
+        const newChatMessage = [...chatMessages,
+        {
+            message: saveInput,
+            sender: "user",
+            id: crypto.randomUUID()
+        }]
+        setChatMessages(newChatMessage);
 
-                setInputText('')
-                setIsLoading(false)
-            }
+        const response = await Chatbot.getResponseAsync(saveInput)
+        setChatMessages([...newChatMessage,
+        {
+            message: response,
+            sender: "robot",
+            id: crypto.randomUUID()
+        }]);
 
-            return (
-                <div className="chat-input-container">
-                    <input
-                        placeholder="Send a message to Chatbot"
-                        size="30"
-                        className="chat-input"
-                        onChange={saveInputText}
-                        value={saveInput}
-                        disabled={isLoading}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                sendMessage();
-                            }
-                            if (e.key === "Escape") {
-                                setInputText('');
-                            }
-                        }}
-                    />
-                    <button
-                        onClick={sendMessage}
-                        disabled={isLoading}
-                        className="send-button">
-                        {isLoading ? "Loading..." : "Send"}
-                    </button>
-                </div>
-            );
-        }
+        setInputText('')
+        setIsLoading(false)
+    }
+
+    function clearStorage() {
+        localStorage.clear()
+        setChatMessages([])
+    }
+    return (
+        <div className="chat-input-container">
+            <input
+                placeholder="Send a message to Chatbot"
+                size="30"
+                className="chat-input"
+                onChange={saveInputText}
+                value={saveInput}
+                disabled={isLoading}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        sendMessage();
+                    }
+                    if (e.key === "Escape") {
+                        setInputText('');
+                    }
+                }}
+
+            />
+            <button
+                onClick={sendMessage}
+                disabled={isLoading}
+                className="send-button">
+                {isLoading ? "Loading..." : "Send"}
+            </button>
+            <button
+                className='clear-button'
+                onClick={clearStorage}>
+                Clear All
+            </button>
+        </div>
+    );
+}
