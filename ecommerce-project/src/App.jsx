@@ -1,6 +1,7 @@
 import { HomePage } from './components/pages/Homepage'
 import { Routes, Route } from 'react-router'
 import './App.css'
+import { CheckoutPage } from './components/pages/CheckoutPage'
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="checkout" element={<div><h1>testing  checkout page and URL routing  </h1></div>} />
+        <Route path="checkout" element={<CheckoutPage />} />
       </Routes>
     </>
   )
