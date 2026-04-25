@@ -7,7 +7,7 @@ import { formatMoney } from '../../utills/money';
 
 export function CheckoutPage({ cart }) {
     const [deliveryOptions, setdeliveryOptions] = useState([])
-    const [paymentSummary, setPaymentSummary] = useState({})
+    const [paymentSummary, setPaymentSummary] = useState(null)
 
     useEffect(() => {
         axios.get(`/api/delivery-options?expand=estimatedDeliveryTime`)
@@ -108,7 +108,6 @@ export function CheckoutPage({ cart }) {
                         })
                         }
 
-
                     </div>
                     {paymentSummary && (
                         <>
@@ -150,8 +149,6 @@ export function CheckoutPage({ cart }) {
                         </>
                     )
                     }
-
-
                 </div>
             </div>
         </>
