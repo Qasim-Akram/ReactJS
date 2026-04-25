@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HomePage } from './pages/Homepage'
+import { HomePage } from './pages/home/Homepage'
 import { Routes, Route } from 'react-router'
 import { CheckoutPage } from './pages/checkout/checkoutPage'
 import { OrdersPage } from './pages/OrdersPage'
