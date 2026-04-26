@@ -25,6 +25,15 @@ export function CartItemsDetail({ cartitems, deliveryOptions, selectedDeliveryOp
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            updateQuantity();
+        } else if (event.key === 'Escape') {
+            setQuantity(cartitems.quantity);
+            setUpdated(false);
+        }
+    }
+
     const newQuantity = (e) => {
         setQuantity(e.target.value);
     }
@@ -46,9 +55,9 @@ export function CartItemsDetail({ cartitems, deliveryOptions, selectedDeliveryOp
                         <span>
                             Quantity:
                             <input className="quantity-input" type="text" value={quantity}
+                                onKeyDown={handleKeyDown}
                                 onChange={newQuantity}
                                 disabled={!updated} />
-
                         </span>
                         <span className="update-quantity-link link-primary"
                             onClick={updateQuantity}>

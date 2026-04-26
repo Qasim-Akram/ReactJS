@@ -8,6 +8,9 @@ export function Header({ cart }) {
         totalItems += item.quantity;
     })
 
+    const textToSearch = (event) => {
+        console.log(event.target.value)
+    }
     return (
         <>
             <div className="header">
@@ -21,7 +24,8 @@ export function Header({ cart }) {
                 </div>
 
                 <div className="middle-section">
-                    <input className="search-bar" type="text" placeholder="Search" />
+                    <input className="search-bar" type="text" placeholder="Search" 
+                    onChange={textToSearch}/>
 
                     <button className="search-button">
                         <img className="search-icon" src="images/icons/search-icon.png" />
