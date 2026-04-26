@@ -5,7 +5,7 @@ import { Header } from '../../components/Header';
 import './orderspage.css'
 import dayjs from 'dayjs';
 
-export function OrdersPage({ cart }) {
+export function OrdersPage({ cart ,loadCart}) {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
@@ -50,6 +50,14 @@ export function OrdersPage({ cart }) {
 
                                     <div className="order-details-grid">
                                         {order.products.map((orderProduct) => {
+                                            const addToCart = async () => {
+                                                await axios.post(`/api/cart-items`, {
+                                                    productId :orderProduct.product.id,
+                                                    quantity: 1
+                                                })
+                                                await loadCart();
+                                            }
+
                                             return (
                                                 <Fragment key={orderProduct.id}>
                                                     <div className="product-image-container">
@@ -66,7 +74,7 @@ export function OrdersPage({ cart }) {
                                                         <div className="product-quantity">
                                                             Quantity: {orderProduct.quantity}
                                                         </div>
-                                                        <button className="buy-again-button button-primary">
+                                                        <button className="buy-again-button button-primary"  onClick={addToCart}>
                                                             <img className="buy-again-icon" src="images/icons/buy-again.png" />
                                                             <span className="buy-again-message">Add to Cart</span>
                                                         </button>

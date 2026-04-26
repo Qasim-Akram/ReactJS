@@ -147,6 +147,7 @@
 .home-page .added-to-cart img {
   height: 19px;
   margin-right: 6px;
+   mix-blend-mode: multiply; 
 }
 
 .home-page .add-to-cart-button {
@@ -154,13 +155,4 @@
   padding: 8px;
   height: 34px;
   margin-top: 1px;
-}
-
-.added-to-cart{
-  color:green;
-  font-size:16px;
-  display:flex;
-  align-items:center;
-  margin-bottom:8px;
-  background-color: black;
 }
