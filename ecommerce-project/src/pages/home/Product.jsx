@@ -1,3 +1,4 @@
+import './Homepage.css'
 import { formatMoney } from "../../utills/money"
 import axios from "axios";
 import { useState } from "react";
@@ -11,6 +12,11 @@ export function Product({ product, loadCart }) {
             quantity: quantity
         });
         loadCart();
+    }
+
+    const selectQuantity = (e) => {
+        const selectedQuantity = Number(e.target.value);
+        setquantity(selectedQuantity);
     }
 
     return (
@@ -37,11 +43,7 @@ export function Product({ product, loadCart }) {
             </div>
 
             <div className="product-quantity-container">
-                <select value={quantity}
-                    onChange={(e) => {
-                        const selectedQuantity = Number(e.target.value);
-                        setquantity(selectedQuantity);
-                    }}>
+                <select value={quantity} onChange={selectQuantity} className="quantity-select">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

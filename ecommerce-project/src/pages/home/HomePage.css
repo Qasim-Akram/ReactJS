@@ -155,3 +155,12 @@
   height: 34px;
   margin-top: 1px;
 }
+
+.added-to-cart{
+  color:green;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  margin-bottom:8px;
+  background-color: black;
+}
