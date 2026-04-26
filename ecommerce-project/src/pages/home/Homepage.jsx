@@ -4,14 +4,15 @@ import './Homepage.css'
 import { Header } from '../../components/Header';
 import { ProductGrid } from './ProductGrid';
 
-export function HomePage({cart}) {
+export function HomePage({ cart }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('/api/products').
-            then((response) => {
-                setProducts(response.data);
-            })
+        const getHomeData = async () => {
+            const response = await axios.get('/api/products')
+            setProducts(response.data);
+        }
+        getHomeData();
     }, []);
 
     return (
@@ -20,7 +21,7 @@ export function HomePage({cart}) {
             <title>E-Commerce</title>
 
             <div className="home-page">
-                <ProductGrid products={products}/>
+                <ProductGrid products={products} />
             </div>
         </>
     );
