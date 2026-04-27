@@ -1,5 +1,5 @@
 import { it, expect, describe, vi, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react'
+import { render, screen , within } from '@testing-library/react'
 import { HomePage } from './Homepage';
 import axios from 'axios';
 import userEvent from '@testing-library/user-event';
@@ -13,7 +13,7 @@ describe('HomePage componenet', () => {
     beforeEach(() => {
         loadCart = vi.fn();
 
-        axios.get.mockImplementation( async (url) => {
+        axios.get.mockImplementation(async (url) => {
             if (url === '/api/products') {
                 return {
                     data: [{
@@ -44,9 +44,23 @@ describe('HomePage componenet', () => {
         })
     })
 
-    it("display the products correctly", () => {
-        <MemoryRouter>
-        render(<HomePage cart={[]} loadCart={loadCart} />)
-        </MemoryRouter>
+    it("display the products correctly", async () => {
+
+        render(
+            <MemoryRouter>
+                <HomePage cart={[]} loadCart={loadCart} />
+            </MemoryRouter>)
+
+        const productContainer = await screen.findAllByTestId('product-container')
+        expect(productContainer.length).toBe(2)
+
+        expect(
+        within(productContainer[0]).getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
+        ).toBeInTheDocument()
+
+        expect(
+        within(productContainer[1]).getByText('Intermediate Size Basketball')
+        ).toBeInTheDocument()
     })
+
 })
