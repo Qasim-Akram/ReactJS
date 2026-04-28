@@ -5,7 +5,7 @@ import { Header } from '../../components/Header';
 import './orderspage.css'
 import dayjs from 'dayjs';
 
-export function OrdersPage({ cart ,loadCart}) {
+export function OrdersPage({ cart, loadCart }) {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export function OrdersPage({ cart ,loadCart}) {
                                         {order.products.map((orderProduct) => {
                                             const addToCart = async () => {
                                                 await axios.post(`/api/cart-items`, {
-                                                    productId :orderProduct.product.id,
+                                                    productId: orderProduct.product.id,
                                                     quantity: 1
                                                 })
                                                 await loadCart();
@@ -74,7 +74,7 @@ export function OrdersPage({ cart ,loadCart}) {
                                                         <div className="product-quantity">
                                                             Quantity: {orderProduct.quantity}
                                                         </div>
-                                                        <button className="buy-again-button button-primary"  onClick={addToCart}>
+                                                        <button className="buy-again-button button-primary" onClick={addToCart}>
                                                             <img className="buy-again-icon" src="images/icons/buy-again.png" />
                                                             <span className="buy-again-message">Add to Cart</span>
                                                         </button>

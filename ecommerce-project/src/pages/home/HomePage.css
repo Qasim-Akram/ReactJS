@@ -113,7 +113,7 @@ body {
 }
 
 .brand-tagline {
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     font-weight: 300;
     letter-spacing: 0.18em;
     color: var(--text-muted);
@@ -207,7 +207,7 @@ body {
 
 .orders-text,
 .cart-text {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 400;
     color: var(--text-nav);
     letter-spacing: 0.08em;
@@ -238,7 +238,7 @@ body {
     right: 6px;
     background: #f0f0f0;
     color: #0e0e0e;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     font-weight: 600;
     font-family: 'Jost', sans-serif;
     min-width: 16px;
@@ -349,7 +349,7 @@ body {
 }
 
 .product-rating-count {
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     font-weight: 300;
     color: var(--text-muted);
     letter-spacing: 0.04em;
@@ -379,7 +379,7 @@ body {
     border-radius: 3px;
     color: var(--text-secondary);
     font-family: 'Jost', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 300;
     letter-spacing: 0.04em;
     padding: 6px 8px;
@@ -409,7 +409,7 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.65rem;
+    font-size: 0.78rem;
     font-weight: 300;
     color: var(--text-muted);
     letter-spacing: 0.08em;
@@ -432,7 +432,7 @@ body {
     border-radius: 3px;
     color: var(--text-secondary);
     font-family: 'Jost', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;

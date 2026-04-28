@@ -64,7 +64,7 @@
 }
 
 .checkout-header-middle-section {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -84,7 +84,7 @@
   }
 
   .checkout-header-middle-section {
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     letter-spacing: 0.14em;
   }
 }
