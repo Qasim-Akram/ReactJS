@@ -1,211 +1,406 @@
+:root {
+  --bg: #0e0e0e;
+  --surface: #141414;
+  --surface-raised: #1a1a1a;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-focus: rgba(255, 255, 255, 0.22);
+  --text-primary: rgba(255, 255, 255, 0.85);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.28);
+  --btn-bg: rgba(255, 255, 255, 0.07);
+  --btn-bg-hover: rgba(255, 255, 255, 0.13);
+  --btn-border: rgba(255, 255, 255, 0.1);
+  --btn-border-hover: rgba(255, 255, 255, 0.22);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  background: var(--bg);
+  font-family: 'Jost', sans-serif;
+}
+
 .checkout-page {
-  max-width: 1100px;
-  padding-left: 30px;
-  padding-right: 30px;
-
-  margin-top: 140px;
-  margin-bottom: 100px;
-
-  /* margin-left: auto;
-     margin-right auto;
-     Is a trick for centering an element horizontally
-     without needing a container. */
-  margin-left: auto;
-  margin-right: auto;
+  padding: 48px 40px;
+  animation: fadeIn 0.4s 0.2s ease both;
 }
 
-.checkout-page .page-title {
-  font-weight: 700;
-  font-size: 22px;
-  margin-bottom: 18px;
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
 }
 
-.checkout-page .checkout-grid {
+.checkout-grid {
   display: grid;
-  /* Here, 1fr means the first column will take
-     up the remaining space in the grid. */
-  grid-template-columns: 1fr 350px;
-  column-gap: 12px;
-
-  /* Use align-items: start; to prevent the elements
-     in the grid from stretching vertically. */
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
   align-items: start;
 }
 
-@media (max-width: 1000px) {
-  .checkout-page .main {
-    max-width: 500px;
-  }
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  .checkout-page .checkout-grid {
+.cart-item-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+  animation: cardReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cart-item-container:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.cart-item-container:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.cart-item-container:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+.cart-item-container:nth-child(4) {
+  animation-delay: 0.35s;
+}
+
+.cart-item-container:hover {
+  border-color: var(--border-hover);
+}
+
+.delivery-date {
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cart-item-details-grid {
+  display: grid;
+  grid-template-columns: 88px 1fr 200px;
+  gap: 0;
+  padding: 20px;
+  align-items: start;
+}
+
+.cart-item-details-grid .product-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  opacity: 0.85;
+  background: var(--surface-raised);
+  transition: opacity 0.2s ease;
+}
+
+.cart-item-details-grid .product-image:hover {
+  opacity: 1;
+}
+
+.cart-item-details {
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-item-details .product-name {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.cart-item-details .product-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  letter-spacing: 0.02em;
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.03em;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.quantity-input {
+  width: 38px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  padding: 3px 6px;
+  outline: none;
+  text-align: center;
+  margin-left: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.quantity-input:focus {
+  border-color: var(--border-focus);
+}
+
+.quantity-input:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.link-primary {
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.link-primary:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.update-quantity-link {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.delete-quantity-link {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.delivery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.delivery-options-title {
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.delivery-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.delivery-option:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.delivery-option-input {
+  accent-color: #f0f0f0;
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.delivery-option-date {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.02em;
+}
+
+.delivery-option-price {
+  font-size: 0.65rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.payment-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  position: sticky;
+  top: 88px;
+  animation: cardReveal 0.5s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.payment-summary-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+
+.payment-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.payment-summary-row:last-of-type {
+  border-bottom: none;
+}
+
+.payment-summary-money {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.subtotal-row {
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.total-row {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+}
+
+.total-row div {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+.place-order-button {
+  width: 100%;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  border-radius: 3px;
+  color: #0e0e0e;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 13px 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.place-order-button:hover {
+  background: #ffffff;
+}
+
+.place-order-button:active {
+  transform: scale(0.98);
+}
+
+.button-primary {
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: 3px;
+  color: var(--text-secondary);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.button-primary:hover {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-border-hover);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 900px) {
+  .checkout-grid {
     grid-template-columns: 1fr;
   }
-}
 
-.checkout-page .cart-item-container,
-.checkout-page .payment-summary {
-  border: 1px solid rgb(222, 222, 222);
-  border-radius: 4px;
-  padding: 18px;
-}
+  .payment-summary {
+    position: static;
+  }
 
-.checkout-page .cart-item-container {
-  margin-bottom: 12px;
-}
+  .cart-item-details-grid {
+    grid-template-columns: 80px 1fr;
+  }
 
-.checkout-page .payment-summary {
-  padding-bottom: 5px;
-}
-
-@media (max-width: 1000px) {
-  .checkout-page .payment-summary {
-    /* grid-row: 1 means this element will be placed into row
-      1 in the grid. (Normally, the row that an element is
-      placed in is determined by the order of the elements in
-      the HTML. grid-row overrides this default ordering). */
-    grid-row: 1;
-    margin-bottom: 12px;
+  .delivery-options {
+    grid-column: 1 / -1;
+    margin-top: 12px;
   }
 }
 
-.checkout-page .delivery-date {
-  color: rgb(25, 135, 84);
-  font-weight: 700;
-  font-size: 19px;
-  margin-top: 5px;
-  margin-bottom: 22px;
-}
-
-.checkout-page .cart-item-details-grid {
-  display: grid;
-  /* 100px 1fr 1fr; means the 2nd and 3rd column will
-    take up half the remaining space in the grid
-    (they will divide up the remaining space evenly). */
-  grid-template-columns: 100px 1fr 1fr;
-  column-gap: 25px;
-}
-
-@media (max-width: 1000px) {
-  .checkout-page .cart-item-details-grid {
-    grid-template-columns: 100px 1fr;
-    row-gap: 30px;
+@media (max-width: 600px) {
+  .checkout-page {
+    padding: 24px 16px;
   }
-}
 
-.checkout-page .product-image {
-  max-width: 100%;
-  max-height: 120px;
-
-  /* margin-left: auto;
-     margin-right auto;
-     Is a trick for centering an element horizontally
-     without needing a container. */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.checkout-page .product-name {
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.checkout-page .product-price {
-
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.checkout-page .product-quantity .link-primary {
-  margin-left: 3px;
-}
-
-@media (max-width: 1000px) {
-  .checkout-page .delivery-options {
-    /* grid-column: 1 means this element will be placed
-       in column 1 in the grid. (Normally, the column that
-       an element is placed in is determined by the order
-       of the elements in the HTML. grid-column overrides
-       this default ordering).
-
-       / span 2 means this element will take up 2 columns
-       in the grid (Normally, each element takes up 1
-       column in the grid). */
-    grid-column: 1 / span 2;
+  .cart-item-details-grid {
+    grid-template-columns: 68px 1fr;
+    padding: 14px;
   }
-}
 
-.checkout-page .delivery-options-title {
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.checkout-page .delivery-option {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  margin-bottom: 12px;
-  cursor: pointer;
-}
-
-.checkout-page .delivery-option-input {
-  margin: 3px 5px 0px 0px;
-  cursor: pointer;
-}
-
-.checkout-page .delivery-option-date {
-
-  font-weight: 500;
-  margin-bottom: 3px;
-}
-
-.checkout-page .delivery-option-price {
-  color: rgb(120, 120, 120);
-  font-size: 15px;
-}
-
-.checkout-page .payment-summary-title {
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.checkout-page .payment-summary-row {
-  display: grid;
-  /* 1fr auto; means the width of the 2nd column will be
-     determined by the elements inside the column (auto).
-     The 1st column will take up the remaining space. */
-  grid-template-columns: 1fr auto;
-
-  font-size: 15px;
-  margin-bottom: 9px;
-}
-
-.checkout-page .payment-summary-money {
-  text-align: right;
-}
-
-.checkout-page .subtotal-row .payment-summary-money {
-  border-top: 1px solid rgb(222, 222, 222);
-}
-
-.checkout-page .subtotal-row div {
-  padding-top: 9px;
-}
-
-.checkout-page .total-row {
-  color: rgb(25, 135, 84);
-  font-weight: 700;
-  font-size: 18px;
-
-  border-top: 1px solid rgb(222, 222, 222);
-  padding-top: 18px;
-}
-
-.checkout-page .place-order-button {
-  width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-radius: 5px;
-
-  margin-top: 20px;
-  margin-bottom: 19px;
+  .cart-item-details {
+    padding: 0 12px;
+  }
 }
