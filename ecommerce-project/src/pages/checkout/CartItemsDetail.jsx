@@ -3,23 +3,35 @@ import dayjs from "dayjs";
 import axios from "axios";
 import { formatMoney } from "../../utills/money";
 import { DeliveryOptions } from "./DeliveryOptions";
+import { Toast } from "../../components/Toast";
 
 export function CartItemsDetail({ cartitems, deliveryOptions, selectedDeliveryOption, loadCart }) {
     const [updated, setUpdated] = useState(false);
     const [quantity, setQuantity] = useState(cartitems.quantity);
+    const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
 
     const deleteCartItem = async () => {
-        await axios.delete(`/api/cart-items/${cartitems.productId}`)
-        await loadCart();
+        try {
+            await axios.delete(`/api/cart-items/${cartitems.productId}`);
+            await loadCart();
+            setToast({ show: true, message: 'Item removed from cart', type: 'success' });
+        } catch (error) {
+            setToast({ show: true, message: 'Failed to delete item', type: 'error' });
+        }
     }
 
     const updateQuantity = async () => {
         if (updated) {
-            await axios.put(`/api/cart-items/${cartitems.productId}`, {
-                quantity: Number(quantity)
-            });
-            await loadCart();
-            setUpdated(false);
+            try {
+                await axios.put(`/api/cart-items/${cartitems.productId}`, {
+                    quantity: Number(quantity)
+                });
+                await loadCart();
+                setUpdated(false);
+                setToast({ show: true, message: 'Quantity updated successfully', type: 'success' });
+            } catch (error) {
+                setToast({ show: true, message: 'Failed to update quantity', type: 'error' });
+            }
         } else {
             setUpdated(true);
         }
@@ -40,6 +52,13 @@ export function CartItemsDetail({ cartitems, deliveryOptions, selectedDeliveryOp
 
     return (
         <div className="cart-item-container">
+            {toast.show && (
+                <Toast 
+                    message={toast.message} 
+                    type={toast.type}
+                    onClose={() => setToast({ ...toast, show: false })} 
+                />
+            )}
             <div className="delivery-date">
                 Delivery date:
                 {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
@@ -54,7 +73,7 @@ export function CartItemsDetail({ cartitems, deliveryOptions, selectedDeliveryOp
                     <div className="product-quantity">
                         <span>
                             Quantity:
-                            <input className="quantity-input" type="text" value={quantity}
+                            <input className="quantity-input" input="number" min="1" max="15" value={quantity}
                                 onKeyDown={handleKeyDown}
                                 onChange={newQuantity}
                                 disabled={!updated} />

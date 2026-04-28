@@ -52,7 +52,7 @@ export function Header({ cart }) {
                     </Link>
                     <Link className="cart-link header-link" to="/checkout">
                         <img className="cart-icon" src="images/icons/cart-icon.png" alt="cart" />
-                        <div className="cart-quantity">{totalItems?totalItems:" "}</div>
+                        {totalItems && <div className="cart-quantity">{totalItems}</div>}
                         <div className="cart-text">Cart</div>
                     </Link>
                 </div>
