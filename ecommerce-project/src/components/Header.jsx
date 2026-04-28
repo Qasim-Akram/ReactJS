@@ -6,40 +6,43 @@ export function Header({ cart }) {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
-    
+
     let totalItems = 0;
     cart.forEach((item) => {
         totalItems += item.quantity;
-    })
+    });
 
-    const searchItem = () => {          
+    const searchItem = () => {
         navigate(`/?search=${searchTerm}`);
-    }
+    };
 
-    const handleKeyDown = (event) => {   
+    const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             searchItem();
         }
-    }
+    };
 
     return (
         <>
             <div className="header">
                 <div className="left-section">
-                    <Link to="/" className="header-link">
-                        <img className="logo" src="images/logo-white.png" />
-                        <img className="mobile-logo" src="images/mobile-logo-white.png" />
+                    <Link to="/" className="header-link brand-link">
+                        <span className="brand-name">yourOwn</span>
+                        <span className="brand-tagline">Everything You. Nothing Less.</span>
                     </Link>
                 </div>
 
                 <div className="middle-section">
-                    <input className="search-bar" type="text" placeholder="Search"
+                    <input
+                        className="search-bar"
+                        type="text"
+                        placeholder="Search products..."
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}  
-                        onKeyDown={handleKeyDown}                         
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
-                    <button className="search-button" onClick={searchItem}>  
-                        <img className="search-icon" src="images/icons/search-icon.png" />
+                    <button className="search-button" onClick={searchItem}>
+                        <img className="search-icon" src="images/icons/search-icon.png" alt="search" />
                     </button>
                 </div>
 
@@ -48,12 +51,12 @@ export function Header({ cart }) {
                         <span className="orders-text">Orders</span>
                     </Link>
                     <Link className="cart-link header-link" to="/checkout">
-                        <img className="cart-icon" src="images/icons/cart-icon.png" />
+                        <img className="cart-icon" src="images/icons/cart-icon.png" alt="cart" />
                         <div className="cart-quantity">{totalItems}</div>
                         <div className="cart-text">Cart</div>
                     </Link>
                 </div>
             </div>
         </>
-    )
+    );
 }
