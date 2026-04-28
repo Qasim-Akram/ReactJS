@@ -30,7 +30,7 @@ export function TrackingPage({ cart }) {
     if (deliveryPercent > 100) deliveryPercent = 100;
 
     const isPreparing = deliveryPercent < 33;
-    const isShipped   = deliveryPercent >= 33 && deliveryPercent < 100;
+    const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
     const isDelivered = deliveryPercent === 100;
 
     return (
@@ -79,7 +79,10 @@ export function TrackingPage({ cart }) {
                     <div className="progress-bar-container">
                         <div
                             className="progress-bar"
-                            style={{ width: `${deliveryPercent}%` }}
+                            style={{
+                                width: `${deliveryPercent}%`,
+                                '--progress': `${deliveryPercent}%`
+                            }}
                         ></div>
                     </div>
 
